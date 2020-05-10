@@ -24,6 +24,24 @@ public class EmployeeList {
 		return flatEmployeeList.get(employeeID).getMonthlySalary();
 	}
 
+	public static double getSalesRate(int employeeID) {
+		if(hourlyEmployeeList.containsKey(employeeID)){
+			return hourlyEmployeeList.get(employeeID).getSalesCommission();
+		}
+		else if(flatEmployeeList.containsKey(employeeID)){
+			return flatEmployeeList.get(employeeID).getSalesCommission();
+		}
+		return 0;
+	}	
+	public static void setSalesRate(int employeeID, double rate) {
+		if(hourlyEmployeeList.containsKey(employeeID)){
+			hourlyEmployeeList.get(employeeID).setSalesCommission(rate);
+		}
+		else if(flatEmployeeList.containsKey(employeeID)){
+			flatEmployeeList.get(employeeID).setSalesCommission(rate);
+		}
+	}	
+
 	private static void addHourlyEmployee(){
 		Scanner sc=new Scanner(System.in);
 		System.out.print("Input Name: ");

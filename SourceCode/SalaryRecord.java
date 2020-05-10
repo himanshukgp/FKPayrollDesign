@@ -5,9 +5,41 @@ import java.io.*;
 
 public class SalaryRecord {
 	private static Map<Integer, DailyHour> hourlyEmployeeWorkRecord = new HashMap<>();
-	// private static Map<Integer, HourlyEmployee> hourlyEmployeeList = new HashMap<>();
+	private static Map<Integer, SalesRecord> employeeSalesRecord = new HashMap<>();
 	// private static Map<Integer, HourlyEmployee> hourlyEmployeeList = new HashMap<>();
 
+
+	public static void postSalesCard() throws Exception {
+		System.out.print("\n-- Input following Details To add to the Time Card --\n");
+
+		// Get Date
+		System.out.print("Input Date (Leave empty to take todays date) : ");
+		String inputDateString = (new Scanner(System.in)).nextLine();
+		Date inputDate;
+		if(inputDateString.length()>0) inputDate = new SimpleDateFormat("dd/MM/yyyy").parse(inputDateString);  
+		else inputDate = new Date();
+
+		// Get Employee ID
+		System.out.print("Input Employee ID : ");
+		int employeeID = (new Scanner(System.in)).nextInt();
+
+		// If rate is 0 set rate
+		if(EmployeeList.getSalesRate(employeeID)==0){
+			System.out.print("Sales Rate not set yet, Enter Sales Rate in % : ");
+			double salesRate = (new Scanner(System.in)).nextDouble();
+			EmployeeList.setSalesRate(employeeID, salesRate);
+		}
+
+
+		// Get sales
+		System.out.print("Input Amount of sales : ");
+		double sales = (new Scanner(System.in)).nextDouble();
+
+		if(!employeeSalesRecord.containsKey(employeeID)) employeeSalesRecord.put(employeeID, new SalesRecord());
+
+		employeeSalesRecord.get(employeeID).addEntry(inputDate, sales);		
+
+	}
 
 	public static void postTimeCard() throws Exception {
 		System.out.print("\n-- Input following Details To add to the Time Card --\n");
