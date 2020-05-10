@@ -11,7 +11,14 @@ public class DailyHour implements WeeklyPayRoll {
 		workedHours.put(date,hours);
 	}
 
-	public double calculatePay(){
-		return 0;
+	public double calculatePay(double rate){
+		double result=0;
+		for (Map.Entry<Date, Double> entry : workedHours.entrySet()) {
+		    if(entry.getValue()>8){
+		    	result = 8*rate + (entry.getValue()-8)*(1.5*rate);
+		    }
+		    else result = rate*entry.getValue();
+		}
+		return result;
 	}
 }
