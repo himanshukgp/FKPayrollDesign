@@ -10,30 +10,30 @@ public class Employee {
 
 
 	// Getters
-	final public int get_ID() {
+	final public int getID() {
 		return ID;
 	}
-	final public String get_name() {
+	final public String getName() {
 		return name;
 	}
-	final public int get_paymentMethod() {
+	final public int getPaymentMethod() {
 		return paymentMethod;
 	}
-	final public double get_salesCommission() {
+	final public double getSalesCommission() {
 		return salesCommission;
 	}
-	final public double get_unionMembershipCharge() {
+	final public double getUnionMembershipCharge() {
 		return unionMembershipCharge;
 	}
 
 	// Setters
-	final public void set_paymentMethod(int paymentMethod) {
+	final public void setPaymentMethod(int paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-	final public void set_paymentMethod(double salesCommission) {
+	final public void setSalesCommission(double salesCommission) {
 		this.salesCommission = salesCommission;
 	}
-	final public void set_paymentMethod(double unionMembershipCharge) {
+	final public void setUnionMembershipCharge(double unionMembershipCharge) {
 		this.unionMembershipCharge = unionMembershipCharge;
 	}
 
@@ -44,11 +44,6 @@ public class Employee {
 		ID = count++;
 		this.name = name;
 		this.paymentMethod = paymentMethod;
-	}
-
-	public static void main(String[] args){
-		Employee a = new Employee("himanshu", 1);
-		System.out.println(a.get_ID());
 	}
 
 }

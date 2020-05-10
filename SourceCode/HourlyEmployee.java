@@ -9,9 +9,4 @@ final public class HourlyEmployee extends Employee {
 		this.hourlyRate = hourlyRate;
 	}
 
-	public static void main(String[] args){
-		HourlyEmployee a = new HourlyEmployee("himanshu", 1, 5000);
-		System.out.println(a.get_ID());
-	}
-
 }
