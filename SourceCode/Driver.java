@@ -15,6 +15,9 @@ public class Driver {
 				case 1:
 					EmployeeList.addEmployee();
 					break;
+				case 2:
+					EmployeeList.deleteEmployee();
+					break;
 				case 8:
 					System.exit(0);
 				default:

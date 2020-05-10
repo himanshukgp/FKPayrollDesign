@@ -104,4 +104,22 @@ public class EmployeeList {
 			System.out.println("Invalid input. Please provide a valid input!");
 		}
 	}
+
+	public static void deleteEmployee() throws IOException{
+		System.out.print("Input Employee ID to Delete : ");
+		int empIDToDelete = (new Scanner(System.in)).nextInt();
+
+		if(!hourlyEmployeeList.containsKey(empIDToDelete) && !flatEmployeeList.containsKey(empIDToDelete)) {
+			System.out.println("Employee ID does not exist!\nPlease check ID and Try again.");
+		}
+		else{
+			if(hourlyEmployeeList.containsKey(empIDToDelete)){
+				hourlyEmployeeList.remove(empIDToDelete);
+			}
+			else{
+				flatEmployeeList.remove(empIDToDelete);
+			}
+			saveToJson();
+		}
+	}
 }
