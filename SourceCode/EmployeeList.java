@@ -14,6 +14,16 @@ public class EmployeeList {
 	private static Map<Integer, HourlyEmployee> hourlyEmployeeList = new HashMap<>();
 	private static Map<Integer, FlatEmployee> flatEmployeeList = new HashMap<>();
 
+	// Check for wrong query
+	public static double getHourlySalary(int employeeID) {
+		return hourlyEmployeeList.get(employeeID).getHourlyRate();
+	}
+
+	// Check for wrong Queries
+	public static double getFlatSalary(int employeeID){
+		return flatEmployeeList.get(employeeID).getMonthlySalary();
+	}
+
 	private static void addHourlyEmployee(){
 		Scanner sc=new Scanner(System.in);
 		System.out.print("Input Name: ");
