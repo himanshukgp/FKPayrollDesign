@@ -4,6 +4,9 @@ import java.util.*;
 import java.io.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 // import com.google.gson.GsonBuilder;
 
 
@@ -43,6 +46,10 @@ public class EmployeeList {
         gson.toJson(hourlyEmployeeList, fileWriter);
         fileWriter.close();
 
+        FileWriter fileWriter1 = new FileWriter("FlatEmployeeData.json");
+        gson.toJson(flatEmployeeList, fileWriter1);
+        fileWriter1.close();
+
         // Files.write("", jsonHourlyEmployeeList.getBytes());
         // String jsonFlatEmployeeList = gson.toJson(flatEmployeeList);
         // Files.write("FlatEmployeeData.json", jsonFlatEmployeeList.getBytes());
@@ -52,6 +59,30 @@ public class EmployeeList {
         //deserialization process
         // Entity entity1 = gson.fromJson(jsonFormat, Entity.class);
         // System.out.println(entity1.name + " " + entity1.url);
+	}
+
+	public static void loadEmployee() throws FileNotFoundException {
+		Type type1 = new TypeToken<Map<Integer, HourlyEmployee>>(){}.getType();
+		Gson gson = new Gson();
+		FileReader temp_file_hourly = new FileReader("HourlyEmployeeData.json");
+		JsonReader reader1 = new JsonReader(temp_file_hourly);
+		hourlyEmployeeList = gson.fromJson(reader1, type1);
+
+		Type type2 = new TypeToken<Map<Integer, FlatEmployee>>(){}.getType();
+		FileReader temp_file_flat = new FileReader("FlatEmployeeData.json");
+		JsonReader reader2 = new JsonReader(temp_file_flat);
+		flatEmployeeList = gson.fromJson(reader2, type2);
+	}
+
+	public static void setID(){
+		int ID = 1100;
+		for (Map.Entry<Integer, HourlyEmployee> entry : hourlyEmployeeList.entrySet()) {
+		    if(ID<=entry.getKey()) ID = entry.getKey()+1;
+		}
+		for (Map.Entry<Integer, FlatEmployee> entry : flatEmployeeList.entrySet()) {
+			if(ID<=entry.getKey()) ID = entry.getKey()+1;
+		}
+		Employee.setCount(ID);
 	}
 
 	public static void addEmployee() throws IOException{

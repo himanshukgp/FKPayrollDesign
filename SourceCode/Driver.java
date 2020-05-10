@@ -25,11 +25,19 @@ public class Driver {
 
 	}
 
-	// private loadData(){
-		
-	// }
+	private static void loadData() throws FileNotFoundException{
+		EmployeeList.loadEmployee();		
+	}
 
-	public static void main(String[] args) throws IOException{
+	private static void setIDCount(){
+		EmployeeList.setID();
+	}
+
+
+	public static void main(String[] args) throws Exception{
+		loadData();
+		setIDCount();
+		
 		mainPrompt();
 	}
 }

@@ -8,6 +8,10 @@ public class Employee {
 	private double salesCommission=0;
 	private double unionMembershipCharge=0;
 
+	public static void setCount(int ID){
+		count = ID;
+	}
+
 
 	// Getters
 	final public int getID() {
