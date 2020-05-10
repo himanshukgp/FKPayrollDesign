@@ -14,10 +14,7 @@ public class SalesRecord implements WeeklyPayRoll {
 	public double calculatePay(double rate){
 		double result=0;
 		for (Map.Entry<Date, Double> entry : salesValue.entrySet()) {
-		    if(entry.getValue()>8){
-		    	result = 8*rate + (entry.getValue()-8)*(1.5*rate);
-		    }
-		    else result = rate*entry.getValue();
+		    result+=(entry.getValue()*rate/100);
 		}
 		return result;
 	}

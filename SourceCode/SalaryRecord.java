@@ -77,11 +77,27 @@ public class SalaryRecord {
 		return resultSalary;
 	}
 
+	public static Map<Integer, Double> calculateSalesSalary() {
+		Map<Integer, Double> resultSalary = new HashMap<>();
+		for (Map.Entry<Integer, SalesRecord> entry : employeeSalesRecord.entrySet()) {
+			int employeeID = entry.getKey();
+			double rate = EmployeeList.getSalesRate(employeeID);
+
+		    resultSalary.put(employeeID, entry.getValue().calculatePay(rate));
+		}
+		return resultSalary;
+	}	
+
 	public static void calculateSalary() {
 		Map<Integer, Double> resultSalaryHourly = calculateHourlySalary();
+		Map<Integer, Double> resultSalarySales = calculateSalesSalary();
 
 		for (Map.Entry<Integer, Double> entry : resultSalaryHourly.entrySet()) {
-		    System.out.println("Employee Id : " + entry.getKey() + " gets Rs " + entry.getValue());
+		    System.out.println("Employee Id : " + entry.getKey() + " gets Rs " + entry.getValue() + " for Hourly working");
+		}
+
+		for (Map.Entry<Integer, Double> entry : resultSalarySales.entrySet()) {
+		    System.out.println("Employee Id : " + entry.getKey() + " gets Rs " + entry.getValue() + " for Sales");
 		}
 
 	}

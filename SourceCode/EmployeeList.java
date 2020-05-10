@@ -40,6 +40,7 @@ public class EmployeeList {
 		else if(flatEmployeeList.containsKey(employeeID)){
 			flatEmployeeList.get(employeeID).setSalesCommission(rate);
 		}
+		saveToJson();
 	}	
 
 	private static void addHourlyEmployee(){
@@ -66,17 +67,24 @@ public class EmployeeList {
 		flatEmployeeList.put(emp.getID(), emp);
 	}
 
-	private static void saveToJson() throws IOException{
+	private static void saveToJson() {
 		
         Gson gson = new Gson();
         
-        FileWriter fileWriter = new FileWriter("HourlyEmployeeData.json");
-        gson.toJson(hourlyEmployeeList, fileWriter);
-        fileWriter.close();
+        try {
+        	FileWriter fileWriter = new FileWriter("HourlyEmployeeData.json");
+	        gson.toJson(hourlyEmployeeList, fileWriter);
+	        fileWriter.close();
 
-        FileWriter fileWriter1 = new FileWriter("FlatEmployeeData.json");
-        gson.toJson(flatEmployeeList, fileWriter1);
-        fileWriter1.close();
+	        FileWriter fileWriter1 = new FileWriter("FlatEmployeeData.json");
+	        gson.toJson(flatEmployeeList, fileWriter1);
+	        fileWriter1.close();
+        }
+        catch (Exception e) {
+        	// Do Nothing
+        	System.out.println("File not Found Error");
+        	System.exit(0);
+        }
 
         // Files.write("", jsonHourlyEmployeeList.getBytes());
         // String jsonFlatEmployeeList = gson.toJson(flatEmployeeList);
