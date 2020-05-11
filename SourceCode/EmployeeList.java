@@ -72,11 +72,11 @@ public class EmployeeList {
         Gson gson = new Gson();
         
         try {
-        	FileWriter fileWriter = new FileWriter("HourlyEmployeeData.json");
+        	FileWriter fileWriter = new FileWriter("Data/HourlyEmployeeData.json");
 	        gson.toJson(hourlyEmployeeList, fileWriter);
 	        fileWriter.close();
 
-	        FileWriter fileWriter1 = new FileWriter("FlatEmployeeData.json");
+	        FileWriter fileWriter1 = new FileWriter("Data/FlatEmployeeData.json");
 	        gson.toJson(flatEmployeeList, fileWriter1);
 	        fileWriter1.close();
         }
@@ -100,12 +100,12 @@ public class EmployeeList {
 	public static void loadEmployee() throws FileNotFoundException {
 		Type type1 = new TypeToken<Map<Integer, HourlyEmployee>>(){}.getType();
 		Gson gson = new Gson();
-		FileReader temp_file_hourly = new FileReader("HourlyEmployeeData.json");
+		FileReader temp_file_hourly = new FileReader("Data/HourlyEmployeeData.json");
 		JsonReader reader1 = new JsonReader(temp_file_hourly);
 		hourlyEmployeeList = gson.fromJson(reader1, type1);
 
 		Type type2 = new TypeToken<Map<Integer, FlatEmployee>>(){}.getType();
-		FileReader temp_file_flat = new FileReader("FlatEmployeeData.json");
+		FileReader temp_file_flat = new FileReader("Data/FlatEmployeeData.json");
 		JsonReader reader2 = new JsonReader(temp_file_flat);
 		flatEmployeeList = gson.fromJson(reader2, type2);
 	}
